@@ -1,0 +1,4 @@
+{
+    "account.create.success": "Konto erfolgreich erstellt",
+    "account.create.error": "Konto konnte nicht erstellt werden"
+}
