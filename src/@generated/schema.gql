@@ -1,0 +1,114 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+directive @extends on INTERFACE | OBJECT
+
+directive @external on FIELD_DEFINITION | OBJECT
+
+directive @inaccessible on ARGUMENT_DEFINITION | ENUM | ENUM_VALUE | FIELD_DEFINITION | INPUT_FIELD_DEFINITION | INPUT_OBJECT | INTERFACE | OBJECT | SCALAR | UNION
+
+directive @key(fields: String!, resolvable: Boolean = true) repeatable on INTERFACE | OBJECT
+
+directive @link(import: [link__Import], url: String!) on SCHEMA
+
+directive @override(from: String!) on FIELD_DEFINITION
+
+directive @provides(fields: String!) on FIELD_DEFINITION
+
+directive @requires(fields: String!) on FIELD_DEFINITION
+
+directive @shareable on FIELD_DEFINITION | OBJECT
+
+directive @tag(name: String!) repeatable on ARGUMENT_DEFINITION | ENUM | ENUM_VALUE | FIELD_DEFINITION | INPUT_FIELD_DEFINITION | INPUT_OBJECT | INTERFACE | OBJECT | SCALAR | UNION
+
+input CreateUserDTO {
+  email: String!
+  password: String!
+
+  """Users' role; must be a valid value of admin | user"""
+  role: Role!
+  username: String!
+}
+
+input GetUsersByRoleDto {
+  role: Role!
+}
+
+input LoginInput {
+  email: String!
+  password: String!
+}
+
+type LoginResponse {
+  access_Token: String!
+  refresh_Token: String
+  user: User!
+}
+
+type Mutation {
+  createUser(createUserInput: CreateUserDTO!): User!
+  login(loginInput: LoginInput!): LoginResponse!
+  updateProfile(updateProfileInput: updateProfileInput!): Profile!
+  updateUser(updateUserInput: UpdateUserInput!): User!
+}
+
+"""Profile Model"""
+type Profile {
+  address: String
+  country: String
+
+  """First Name"""
+  firstName: String
+  id: ID!
+  image: String
+
+  """Other Names"""
+  otherNames: String
+  phone: String
+}
+
+type Query {
+  getUser(email: String, id: String): User!
+  getUsersByRole(getUsersInput: GetUsersByRoleDto!): [User!]!
+}
+
+"""Allowed Roles"""
+enum Role {
+  admin
+  user
+}
+
+input UpdateUserInput {
+  email: String
+  password: String
+
+  """Users' role; must be a valid value of admin | user"""
+  role: Role
+  username: String
+}
+
+"""User model"""
+type User {
+  email: String!
+  id: String!
+  profile: Profile
+  role: Role!
+  username: String
+}
+
+scalar link__Import
+
+input updateProfileInput {
+  address: String
+  country: String
+
+  """First Name"""
+  firstName: String
+  id: ID
+  image: String
+
+  """Other Names"""
+  otherNames: String
+  phone: String
+}
