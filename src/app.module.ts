@@ -22,7 +22,10 @@ import { I18nModule, QueryResolver, AcceptLanguageResolver } from 'nestjs-i18n';
         };
         return graphQLFormattedError;
       },
-      autoSchemaFile: path.join(process.cwd(), 'src/@generated/schema.gql'),
+      autoSchemaFile: {
+        federation: 2,
+        path: path.join(process.cwd(), 'src/@generated/schema.gql'),
+      },
       sortSchema: true,
       // typePaths: ['./**/*.graphql'],
       // definitions: {

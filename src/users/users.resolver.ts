@@ -76,9 +76,4 @@ export class UsersResolver {
   ): Promise<Profile> {
     return this.usersService.updateUserProfile(user.id, updateProfileInput);
   }
-
-  // @Mutation('removeUser')
-  // remove(@Args('id') id: number) {
-  //   return this.usersService.remove(id);
-  // }
 }

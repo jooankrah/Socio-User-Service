@@ -1,8 +1,9 @@
-import { Field, ID, ObjectType } from '@nestjs/graphql';
+import { Directive, Field, ObjectType } from '@nestjs/graphql';
 import { Role } from '@prisma/client';
 import { Profile } from './profile.entity';
 
 @ObjectType({ description: 'User model' })
+@Directive('@key(fields: "id")')
 export class User {
   @Field({ nullable: false })
   id: string;
